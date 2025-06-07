@@ -1,20 +1,20 @@
 package com.instantbusiness.Entity;
 
-import javax.persistence.Table;
+import jakarta.persistence.Table;
 
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 import java.sql.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.Data;
-import javax.persistence.GenerationType;
+import jakarta.persistence.GenerationType;
 
 @Entity
-@Table(name="barcode")
+@Table(name="mrpbarcode")
 @Data
 public class mrpbarcode {
     
@@ -36,9 +36,9 @@ public class mrpbarcode {
     @JoinColumn(name="mrpId")
     private mrp mrpProduct;
 
-    @ManyToOne(targetEntity = store.class)
-    @JoinColumn(name="storeId")
-    private store storeProduct;
+    // @ManyToOne(targetEntity = store.class)
+    // @JoinColumn(name="storeId")
+    // private store storeProduct;
 
 
 

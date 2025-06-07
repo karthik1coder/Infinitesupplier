@@ -1,4 +1,4 @@
-package com.instantbusiness.demo;
+package com.instantbusiness;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

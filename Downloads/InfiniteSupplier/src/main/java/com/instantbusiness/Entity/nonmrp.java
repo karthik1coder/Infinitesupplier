@@ -2,15 +2,14 @@ package com.instantbusiness.Entity;
 
 import java.util.List;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 
 @Entity
@@ -41,7 +40,7 @@ public class nonmrp {
 
     @OneToMany(targetEntity = nonmrpbarcode.class)
     @JoinColumn(name="nonMrpBarCodeId")
-    private List<nonmrp> nonMrpBarCodes;
+    private List<nonmrpbarcode> nonMrpBarCodes;
 
     
 }
