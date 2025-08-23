@@ -1,0 +1,14 @@
+com\instantbusiness\service\mrpservice.class
+com\instantbusiness\Entity\mrp.class
+com\instantbusiness\Entity\nonmrp.class
+com\instantbusiness\repository\locationRepo.class
+com\instantbusiness\DemoApplication.class
+com\instantbusiness\repository\nonmrpRepo.class
+com\instantbusiness\Entity\store.class
+com\instantbusiness\repository\mrpRepo.class
+com\instantbusiness\service\nonmrpservice.class
+com\instantbusiness\service\storeservice.class
+com\instantbusiness\Entity\location.class
+com\instantbusiness\repository\storeRepo.class
+com\instantbusiness\Entity\mrpbarcode.class
+com\instantbusiness\Entity\nonmrpbarcode.class

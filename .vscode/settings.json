@@ -1,0 +1,8 @@
+{
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "files.associations": {
+        "iostream": "cpp",
+        "ostream": "cpp"
+    },
+    "java.compile.nullAnalysis.mode": "automatic"
+}
