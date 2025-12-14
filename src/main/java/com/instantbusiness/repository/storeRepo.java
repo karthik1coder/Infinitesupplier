@@ -19,6 +19,7 @@ public interface storeRepo extends JpaRepository<store, Long> {
                  + "ORDER BY s.ratings DESC ",nativeQuery = true)
     List<store> findNearestLocation(double latitude,double longitude, double radius,double ratings, Long maximumlimit);
     
+    
 
     
 
