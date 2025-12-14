@@ -1,35 +1,74 @@
 package com.instantbusiness.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-
+import com.instantbusiness.Entity.nonmrp;
 import com.instantbusiness.Entity.nonmrpbarcode;
-import com.instantbusiness.repository.nonmrpRepo;
+import com.instantbusiness.Enum.DBOperation;
+import com.instantbusiness.repository.nonMrpBarCodeRepo;
+import com.instantbusiness.repository.nonMrpRepo;
 
+
+@Service
 public class NonMrpService {
     
 
      @Autowired 
-    private nonmrpRepo nonmrpserviceRepo;
+    private nonMrpBarCodeRepo nonmrpserviceRepo;
 
-    public void addNewMrp(nonmrpbarcode nonmrp) {
-        nonmrpserviceRepo.save(nonmrp);
-    }
-    public void deleteMrp(nonmrpbarcode nonmrp) {
-        nonmrpserviceRepo.delete(nonmrp);
-    }
+    @Autowired
+    private nonMrpRepo nonMrpCategoryRepo;
 
-    public void updateMrp(nonmrpbarcode mrp, nonmrpbarcode newmrp) {
-        nonmrpbarcode oldmrp = nonmrpserviceRepo.findById(mrp.getNonMrpBarCodeId()).orElse(null);
-        if (oldmrp == null) {
-           System.out.println("Non-MRP barcode not found with ID: " + mrp.getNonMrpBarCodeId());
-            return;
+    public void performBarCodeOperation(nonmrpbarcode nonMrpBarCode, DBOperation nonMrpOperation, nonmrpbarcode newNonMrpBarCode) 
+    {
+        switch(nonMrpOperation) {
+            case INSERT:
+                nonmrpserviceRepo.save(nonMrpBarCode);
+                break;
+            case DELETE:
+                nonmrpserviceRepo.delete(nonMrpBarCode);
+                break;
+            case UPDATE:
+                nonmrpbarcode oldNonMrpBarCode = nonmrpserviceRepo.findById(nonMrpBarCode.getNonMrpBarCodeId()).orElse(null);
+                if (oldNonMrpBarCode == null) {
+                    System.out.println("Non-MRP barcode not found with ID: " + nonMrpBarCode.getNonMrpBarCodeId());
+                    return;
+                }
+                oldNonMrpBarCode = newNonMrpBarCode;
+                nonmrpserviceRepo.save(oldNonMrpBarCode);
+                break;
+            default:
+                System.out.println("Invalid operation");
         }
-        oldmrp = newmrp;
-        nonmrpserviceRepo.save(oldmrp);
     }
+
     public void complain()
     {
         nonmrpserviceRepo.deleteEntitiesForExpiredBarCode();
     }
+
+    public void performCategoryOperation(nonmrp nonmrpCategory, DBOperation nonMrpOperation, nonmrp newNonMrpCategory) {
+        switch (nonMrpOperation) {
+            case INSERT:
+                nonMrpCategoryRepo.save(nonmrpCategory);
+                break;
+            case DELETE:
+                nonMrpCategoryRepo.delete(nonmrpCategory);
+                break;
+            case UPDATE:
+                nonmrp oldNonMrpCategory = nonMrpCategoryRepo.findById(nonmrpCategory.getNonMrpId()).orElse(null);
+                if (oldNonMrpCategory == null) {
+                    System.out.println("Non-MRP Category not found with ID: " + nonmrpCategory.getNonMrpId());
+                    return;
+                }
+                oldNonMrpCategory = newNonMrpCategory;
+                nonMrpCategoryRepo.save(oldNonMrpCategory);
+                break;
+            default:
+                System.out.println("Invalid operation");
+        }
+    }
+
+    
 }

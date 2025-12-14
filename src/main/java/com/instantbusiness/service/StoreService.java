@@ -1,15 +1,16 @@
 package com.instantbusiness.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Service;
 
 import com.instantbusiness.Entity.store;
 import com.instantbusiness.repository.storeRepo;
 
 
 
-@Configuration
+@Service
 public class StoreService {
+    
     
 
     @Autowired
