@@ -16,24 +16,28 @@ public class StoreService {
     @Autowired
     private storeRepo storeserviceRepo;
 
-    public void addNewStore(store store) {
-        storeserviceRepo.save(store);
-    }
 
-    public void deleteStore(store store) {
-        storeserviceRepo.delete(store);
-    }
-
-    public void updateStore(store StoreId,store newstore) {
-        store oldstore = storeserviceRepo.findById(StoreId.getStoreId()).orElse(null);
-        if (oldstore == null) {
-            System.out.println("Store not found with ID: " + StoreId.getStoreId());
-            return;
+    public void performStoreOperation(store storeEntity, String operation, store newstore) {
+        switch (operation.toUpperCase()) {
+            case "INSERT":
+                storeserviceRepo.save(storeEntity);
+                break;
+            case "DELETE":
+                storeserviceRepo.delete(storeEntity);
+                break;
+            case "UPDATE":
+                store oldstore = storeserviceRepo.findById(storeEntity.getStoreId()).orElse(null);
+                if (oldstore == null) {
+                    System.out.println("Store not found with ID: " + storeEntity.getStoreId());
+                    return;
+                }
+                oldstore.setName(newstore.getName());
+                oldstore.setLocation(newstore.getLocation());
+                storeserviceRepo.save(oldstore);
+                break;
+            default:
+                System.out.println("Invalid operation");
         }
-        oldstore.setName(newstore.getName());
-        oldstore.setStoreId(newstore.getStoreId());
-        oldstore.setLocation(newstore.getLocation());
-        storeserviceRepo.save(oldstore);
     }
 
 
